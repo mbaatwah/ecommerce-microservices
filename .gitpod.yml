@@ -1,0 +1,26 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: sudo service postgresql start && sudo service mongod start && sudo service redis-server start && sudo service kafka start
+    command: bash
+
+ports:
+  - port: 27017
+    onOpen: open-preview
+  - port: 5432
+    onOpen: open-preview
+  - port: 6379
+    onOpen: open-preview
+  - port: 9092
+    onOpen: open-preview
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - ms-azuretools.vscode-docker
+    - mongodb.mongodb-vscode
+    - mtxr.sqltools
+    - mtxr.sqltools-driver-pg
+    - formulahendry.code-runner
