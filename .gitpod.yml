@@ -2,7 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: sudo service postgresql start && sudo service mongod start && sudo service redis-server start && sudo service kafka start
+  - init: sudo service postgresql start && sudo service mongod start && sudo service redis-server start
     command: bash
 
 ports:
