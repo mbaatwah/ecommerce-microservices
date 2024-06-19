@@ -16,5 +16,5 @@ app.get('/health', (req, res) => {
 app.use('/', userRoutes);
 
 app.listen(port, () => {
-  console.log(`User Service listening at http://localhost:${port}`);
+  console.log(`User Service listening at Port ${port}`);
 });
