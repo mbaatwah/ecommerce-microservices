@@ -1,5 +1,6 @@
 const userModel = require('../models/user');
 const { Router } = require('express');
+const bcrypt = require('bcrypt');
 
 const router = Router();
 
@@ -26,6 +27,20 @@ router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     const user = await userModel.deleteUser(id);
     res.json(user);
+});
+
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await userModel.getUserByEmail(email);
+    if (!user) {
+        return res.status(401).json({ error: 'Invalid credentials'});
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.status(401).json({ error: 'Invalid credentials'});
+    }
+
+    return res.json({user, error: null});
 });
 
 module.exports = router;
