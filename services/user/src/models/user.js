@@ -2,15 +2,36 @@ const prisma = require("../lib/db");
 const bcrypt = require('bcrypt');
 
 const getUserById = async (id) => {
-	return await prisma.user.findUnique({
+    if (!id) {
+        throw new Error('User id not provided');
+    }
+
+
+	const user = await prisma.user.findUnique({
 		where: { id },
 	});
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    return user;
 };
 
 getUserByEmail = async (email) => {
-    return await prisma.user.findUnique({
+    if(!email) {
+        throw new Error('User email not provided');
+    }
+
+    const user = await prisma.user.findUnique({
         where: { email },
     });
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    return user;
 }
 
 const createUser = async (firstName, lastName, email, password) => {
@@ -39,9 +60,17 @@ const updateUser = async (id, firstName, lastName, email, password) => {
 }
 
 const deleteUser = async (id) => {
-    return await prisma.user.delete({
-        where: { id },
-    });
+    if (!id) {
+        throw new Error('User id not provided');
+    }
+
+    try {
+        return await prisma.user.delete({
+            where: { id },
+        });
+    } catch (error) {
+        throw new Error('User not deleted');
+    }
 }
 
 module.exports = {
