@@ -6,8 +6,13 @@ const router = Router();
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const user = await userModel.getUserById(id);
-    res.json(user);
+    try {
+        const user = await userModel.getUserById(+id);
+        res.status(200).json(user);
+    } catch (error) {
+        console.log('Error:', error.message);
+        res.status(404).json({ message: 'User not found' });
+    }
 });
 
 router.post('/', async (req, res) => {
