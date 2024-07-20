@@ -24,7 +24,6 @@
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/prisma:2": {},
 		"ghcr.io/itsmechlark/features/postgresql:1": {},
 		"ghcr.io/itsmechlark/features/redis-server:1": {},
 		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {}

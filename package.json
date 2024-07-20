@@ -1,6 +1,19 @@
 {
+  "scripts": {
+    "dev:product": "npm --prefix services/product run dev",
+    "dev:user": "npm --prefix services/user run dev",
+    "dev:order": "npm --prefix services/order dev",
+    "dev:all": "npx concurrently \"npm run dev:product\" \"npm run dev:user\" \"npm run dev:order\"",
+    "seed:product": "npm --prefix services/product run seed"
+  },
   "devDependencies": {
     "jest": "^29.7.0",
+    "prisma": "^5.16.1",
     "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4",
+    "pug": "^3.0.3"
   }
 }
