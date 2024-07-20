@@ -1,18 +1,22 @@
 const prisma = require('../src/lib/db');
 
 async function main() {
-    await prisma.product.upsert({
-        where: { name: 'Product 1' },
-        update: { price: 100, description: 'This is product 1', stock: 10 },
-        create: { name: 'Product 1', price: 100, description: 'This is product 1', stock: 10 },
-    });
+  const productCount = await prisma.product.count();
+  if(productCount > 0) {
+    console.log('Product Database has already been seeded.');
+    return;
+  }
 
-    await prisma.product.upsert({
-        where: { name: 'Product 2' },
-        update: { price: 200, stock: 0 },
-        create: { name: 'Product 2', price: 200, stock: 0 },
-    });
-  console.log('Product Database has been seeded.');
+  const product1 = await prisma.product.create({
+    data: {
+      name: 'Product 1',
+      price: 1000,
+      description: 'This is product 1.',
+      stock: 10,
+    },
+  });
+
+  console.log('Product Database has been seeded.', 'total = ', );
 }
 
 main()
