@@ -1,0 +1,18 @@
+extends ./layouts/base.pug
+block content
+    main
+        h1 Products
+        p Total products: #{products.length}
+        table
+            thead
+                tr
+                    th Name
+                    th Price
+                    th .
+            tbody
+                each product in products
+                    tr
+                        td= product.name
+                        td= product.price
+                        td
+                            a(href=`/products/${product.id}`) View

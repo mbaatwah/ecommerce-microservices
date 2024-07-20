@@ -1,0 +1,9 @@
+extends ./layouts/base.pug
+block content
+    main
+        h1 Product #{product.name}
+        p Description: #{product.description}
+        p Price: #{product.price}
+        p Stock: #{product.stock}
+
+        button(type='button' onclick='javascript:history.back()') Back
