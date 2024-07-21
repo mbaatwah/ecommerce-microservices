@@ -1,0 +1,40 @@
+extends ../layouts/base.pug
+block content
+    main
+        h1 Edit: #{product.name}
+        form(action=`/products/${product.id}` method='patch')
+            div
+                label(for='name') Name
+                input(type='text' name='name' value=product.name required)
+            div
+                label(for='description') Description
+                input(type='text' name='description' value=product.description required)
+            div
+                label(for='price') Price
+                input(type='number' name='price' step='0.01' value=product.price required)
+            div
+                label(for='stock') Stock
+                input(type='number' name='stock' value=product.stock required)
+            div
+                button(type='submit') Save
+                button(type='button' onclick='javascript:history.back()') Cancel
+
+        script.
+            document.querySelector('form').addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const form = event.target;
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                });
+                if (response.ok) {
+                    window.location.href = '/products';
+                } else {
+                    const error = await response.json();
+                    alert(error.message);
+                }
+            });

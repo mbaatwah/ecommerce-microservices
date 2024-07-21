@@ -1,0 +1,23 @@
+extends ../layouts/base.pug
+block content
+    main
+        h1 Create product
+        form(action='/products' method='post')
+            div
+                label(for='name') Name
+                input(type='text' name='name' required)
+            div
+                label(for='description') Description
+                input(type='text' name='description' required)
+            div
+                label(for='price') Price
+                input(type='number' name='price' step='0.01' required)
+            div
+                label(for='stock') Stock
+                input(type='number' name='stock' required)
+            div
+                button(type='submit') Create
+                button(type='button' onclick='javascript:history.back()') Cancel
+
+
+        button(type='button' onclick='javascript:history.back()') Back

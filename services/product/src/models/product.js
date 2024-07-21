@@ -26,25 +26,25 @@ const getProducts = async (filters, sort, limit, offset) => {
     });
 }
 
-const createProduct = async (name, description, price, quantity) => {
+const createProduct = async (name, description, price, stock) => {
     return await prisma.product.create({
         data: {
             name,
             description,
             price,
-            quantity,
+            stock,
         },
     });
 }
 
-const updateProduct = async (id, name, description, price, quantity) => {
+const updateProduct = async (id, name, description, price, stock) => {
     return await prisma.product.update({
         where: { id },
         data: {
             name,
             description,
             price,
-            quantity,
+            stock,
         },
     });
 }

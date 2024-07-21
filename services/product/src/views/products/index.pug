@@ -1,8 +1,10 @@
-extends ./layouts/base.pug
+extends ../layouts/base.pug
 block content
     main
         h1 Products
-        p Total products: #{products.length}
+        div.flex
+            p Total products: #{products.length}
+            a(href='/products/create') New product
         table
             thead
                 tr
