@@ -4,7 +4,8 @@
     "dev:user": "npm --prefix services/user run dev",
     "dev:order": "npm --prefix services/order dev",
     "dev:all": "npx concurrently \"npm run dev:product\" \"npm run dev:user\" \"npm run dev:order\"",
-    "seed:product": "npm --prefix services/product run seed"
+    "seed:product": "npm --prefix services/product run seed",
+    "migrate:all": "npx concurrently \"npm --prefix services/product run migrate\" \"npm --prefix services/user run migrate\" \"npm --prefix services/order run migrate\""
   },
   "devDependencies": {
     "jest": "^29.7.0",

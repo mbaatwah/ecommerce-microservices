@@ -3,7 +3,7 @@ block content
     main
         header.flex
             h2.width Product #{product.name}
-            form(action=`/products/${product.id}` method='delete')
+            form.inline(action=`/products/${product.id}` method='delete')
                 button(type='submit') Delete
             a(href=`/products/${product.id}/edit`) Edit
         p Description: #{product.description}
